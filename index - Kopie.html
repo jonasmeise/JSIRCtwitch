@@ -1,0 +1,47 @@
+﻿<!doctype html>
+<!--
+Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
+
+    http://aws.amazon.com/apache2.0/
+
+or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+-->
+<html>
+<head>
+    <title>Chatbot</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!--<link rel="stylesheet" href="leaderboard.css">-->
+</head>
+<body>
+    <div class="button-list">
+        <button class="connect btn">Connect to chat</button>
+        <button class="disconnect btn">Disconnect from chat</button>
+        <!--<button class="display btn">Populate leaderboard</button>-->
+    </div>
+
+    <div class="form">
+        Channel: <br>
+        <input type="text" id="channel" value="luxu5">
+    </div>
+
+    <script src="chatbot_raw.js"></script>
+    <script>
+    $(document).ready(function(){ //verbindet die funktionen des JScript mit den buttons
+        $('.connect').click(function(){
+            window.chatClient.open();
+        });
+        $('.disconnect').click(function(){
+            window.chatClient.close();
+        });
+    });
+
+    window.chatClient = new chatClient({ //wichtig für die Initialisierung; musst den usernamen durch den Accountnamen + das passwort mit dem dazughörigen OAUTH ersetzen (findest du im netz)
+        channel: '#' + document.getElementById("channel").value,
+        username: 'ACCOUNTNAME',
+        password: 'oauth:OAUTHVONDEINEMACCOUNT',
+    });
+    </script>
+</body>
+</html>
